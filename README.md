@@ -1,237 +1,396 @@
-# Real Estate Price Prediction System
+# 🏠 Real Estate Price Prediction System
 
-A full-stack real estate price prediction platform with:
+<p align="center">
 
-- a FastAPI backend for authentication, predictions, health, metrics, and model management
-- a React frontend for dashboards, predictions, analytics, monitoring, and administration
-- an ML pipeline for training regression models and saving the best artifact
-- Docker, Kubernetes, Terraform, and observability assets for deployment and monitoring
+![Python](https://img.shields.io/badge/Python-3.11-blue?style=for-the-badge\&logo=python)
 
-This repository currently represents the **Phase 1** implementation of the project, focused on the machine-learning foundation and the supporting application stack.
+![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?style=for-the-badge\&logo=fastapi)
 
-## Highlights
+![React](https://img.shields.io/badge/React-Frontend-61DAFB?style=for-the-badge\&logo=react)
 
-- Train and compare multiple regression models for house price prediction
-- Serve predictions through a FastAPI endpoint
-- Track metrics with Prometheus-compatible instrumentation
-- Run the app locally with Python and Node.js, or with Docker Compose
-- Includes dashboards and alerting configuration for monitoring
+![Scikit Learn](https://img.shields.io/badge/Scikit--Learn-ML-F7931E?style=for-the-badge\&logo=scikitlearn)
 
-## Repository layout
+![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?style=for-the-badge\&logo=docker)
+
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+
+</p>
+
+A **production-ready full-stack Machine Learning application** that predicts real estate prices using advanced regression models with a modern web interface, secure authentication, monitoring, and cloud-ready deployment.
+
+---
+
+## 🚀 Features
+
+✅ Real-Time House Price Prediction
+
+✅ FastAPI REST API
+
+✅ React + Vite Frontend
+
+✅ JWT Authentication
+
+✅ Model Retraining API
+
+✅ Scikit-Learn Regression Models
+
+✅ PostgreSQL / SQLite Support
+
+✅ Docker & Docker Compose
+
+✅ Prometheus + Grafana Monitoring
+
+✅ MLflow Experiment Tracking
+
+✅ Kubernetes & Terraform Deployment
+
+---
+
+# 🏗️ System Architecture
+
+![> Add your architecture image here:](docs/architecture.png)
 
 ```text
-backend/         FastAPI application, services, models, schemas, and tests
-frontend/        React application built with Vite
-ml-pipeline/     Training pipeline, feature engineering, and notebooks
-infrastructure/  Kubernetes and Terraform manifests
-monitoring/      Prometheus, Grafana, and Alertmanager configuration
-scripts/         PowerShell helpers for local setup and stack startup
-docs/            Sample datasets and supporting files
+docs/
+└── architecture.png
 ```
 
-## Prerequisites
+```md
+![Architecture](docs/architecture.png)
+```
 
-- Python 3.11+
-- Node.js 18+
-- Docker Desktop, if you want to run the full stack with Compose
-- PostgreSQL and Redis are provided by Docker Compose for local development
+---
 
-## Environment configuration
+# 📂 Repository Structure
 
-The backend reads configuration from the repository root `.env` file.
+```text
+Real-Estate-Price-Prediction-System
 
-Required values:
+├── backend/          # FastAPI backend
+├── frontend/         # React + Vite frontend
+├── ml-pipeline/      # ML training pipeline
+├── infrastructure/   # Kubernetes + Terraform
+├── monitoring/       # Prometheus + Grafana
+├── scripts/          # PowerShell helpers
+├── docs/             # Architecture & screenshots
 
-- `SECRET_KEY`
-- `DATABASE_URL`
+├── README.md
+├── ARCHITECTURE.md
+├── API_REFERENCE.md
+├── SYSTEM_DESIGN.md
+├── CHANGELOG.md
+├── CONTRIBUTING.md
+└── LICENSE
+```
 
-Optional values:
+---
 
-- `MLFLOW_TRACKING_URI`
+# ⚡ Tech Stack
 
-Example values are already provided in `.env` for local development.
+### Frontend
 
-## How to run
+* React
+* Vite
+* Axios
+* React Router
 
-Choose the option that matches what you want to do:
+### Backend
 
-### 1) Run the full stack with Docker Compose
+* FastAPI
+* SQLAlchemy
+* Pydantic
+* JWT Authentication
 
-From the project root, run:
+### Machine Learning
 
-- `scripts/start_stack.ps1`
+* Scikit-Learn
+* Pandas
+* NumPy
+* Joblib
 
-This starts the backend, frontend, PostgreSQL, Redis, Prometheus, Grafana, and Alertmanager.
+### Database
 
-### 2) Run the backend locally
+* PostgreSQL
+* SQLite
 
-From the project root, run:
+### Monitoring
 
-- `scripts/start_backend.ps1`
+* Prometheus
+* Grafana
+* Alertmanager
 
-This creates `backend/.venv` if needed, installs dependencies, and starts FastAPI on port `8000`.
+### DevOps
 
-### 3) Run the frontend locally
+* Docker
+* Docker Compose
+* Kubernetes
+* Terraform
 
-From the `frontend/` directory, run:
+---
 
-- `npm install`
-- `npm run dev`
+# ✨ Key Features
 
-The frontend runs on Vite and connects to the backend at `http://localhost:8000` by default.
+## 🔐 Authentication
 
-## Local backend setup
+* JWT Authentication
+* Secure Password Hashing
+* Role Based Access Control
 
-The quickest way to start the backend on Windows is:
+---
 
-1. Open PowerShell from the project root.
-2. Run `scripts/start_backend.ps1`.
+## 🏡 House Price Prediction
 
-That script will:
+* Multiple Regression Models
 
-- create `backend/.venv` if needed
-- install backend dependencies
-- launch Uvicorn on port `8000`
+  * Linear Regression
 
-If you prefer to run it manually:
+  * Random Forest
 
-1. Create and activate a virtual environment in `backend/`
-2. Install `backend/requirements.txt`
-3. Start FastAPI with `uvicorn main:app --reload --host 0.0.0.0 --port 8000`
+  * Gradient Boosting
 
-## Local frontend setup
+  * XGBoost
 
-From the `frontend/` directory:
+* Real-time predictions
 
-1. Install dependencies with `npm install`
-2. Start the dev server with `npm run dev`
+* Feature preprocessing
 
-The frontend is configured to talk to the backend on `http://localhost:8000` by default.
+* Model comparison
 
-## Full stack with Docker Compose
+---
 
-Use the provided PowerShell helper from the project root:
+## 📈 Monitoring
 
-1. Run `scripts/start_stack.ps1`
+Integrated observability stack:
 
-This starts:
+* Prometheus Metrics
 
-- PostgreSQL
-- Redis
-- backend API
-- frontend app
-- Prometheus
-- Grafana
-- Alertmanager
+* Grafana Dashboards
 
-Docker Compose exposes the common ports used by the stack:
+* Alertmanager
 
-- Backend: `8000`
-- Frontend: `3000`
-- PostgreSQL: `5432`
-- Redis: `6379`
-- Prometheus: `9090`
-- Grafana: `3001`
-- Alertmanager: `9093`
+* Health Checks
 
-## ML pipeline
+---
 
-The model training pipeline lives in `ml-pipeline/pipeline.py` and performs:
+## 🧠 Machine Learning Pipeline
 
-- dataset loading
-- cleaning and missing-value handling
-- outlier removal
-- feature preprocessing
-- model training and comparison
-- artifact export
+The training pipeline performs:
 
-Run it from the `ml-pipeline/` directory after placing your dataset in `ml-pipeline/data/` or one of the supported fallback locations.
+* Dataset Loading
 
-Generated artifacts are stored in `ml-pipeline/tracking/` and include:
+* Data Cleaning
 
-- trained models (`.joblib` and `.pkl`)
-- `results.json`
-- feature-importance plots when available
+* Missing Value Handling
 
-## API endpoints
+* Outlier Removal
 
-The backend exposes routes under `/api/v1`, including:
+* Feature Engineering
 
-- `POST /api/v1/predict` — generate a prediction from feature input
-- `POST /api/v1/retrain` — trigger model retraining
-- `GET /api/v1/health` — service health check
-- `GET /api/v1/metrics` — metrics endpoint
+* Model Training
 
-## Testing
+* Hyperparameter Tuning
 
-Backend tests live under `backend/tests/`.
+* Model Comparison
 
-Typical commands:
+* Artifact Export
 
-- run backend tests with `pytest`
-- run coverage with `pytest --cov`
+Generated artifacts:
 
-## Developer quickstart
+```text
+ml-pipeline/tracking/
 
-1. Copy environment template and set secrets:
+├── model.joblib
+
+├── results.json
+
+├── feature_importance.png
+
+└── mlruns/
+```
+
+---
+
+# 🚀 Quick Start
+
+## 1. Clone Repository
+
+```bash
+git clone https://github.com/omchaudhari602/Real-Estate-Price-Prediction-System.git
+
+cd Real-Estate-Price-Prediction-System
+```
+
+---
+
+## 2. Create Environment
 
 ```powershell
 cp .env.example .env
-# edit .env and set SECRET_KEY and DATABASE_URL appropriately OR generate one with the helper
+
 python scripts/generate_env.py
 ```
 
-2. Create and activate a Python virtualenv for the backend (from repo root):
+---
+
+## 3. Create Virtual Environment
 
 ```powershell
 python -m venv .venv
+
 & .venv\Scripts\Activate.ps1
+
 pip install -r backend/requirements.txt
 ```
 
-3. (Optional) generate an example model for local development so the predict endpoint works without training:
+---
+
+## 4. Generate Example Model
 
 ```powershell
 python scripts/generate_example_model.py
 ```
 
-4. Run backend tests:
+---
 
-```powershell
-$env:PYTHONPATH = "$pwd;$pwd\backend"
-pytest backend -q
-```
-
-5. Start backend locally (development):
+## 5. Start Backend
 
 ```powershell
 cd backend
+
 uvicorn main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-6. Start frontend:
+Backend:
+
+```text
+http://localhost:8000
+```
+
+Swagger Docs:
+
+```text
+http://localhost:8000/docs
+```
+
+---
+
+## 6. Start Frontend
 
 ```powershell
 cd frontend
+
 npm install
+
 npm run dev
 ```
 
-Notes:
-- Use `.env.example` as a template for local `.env`.
-- The CI workflow runs backend tests on push/PR (`.github/workflows/ci.yml`).
+Frontend:
 
-## Monitoring and dashboards
+```text
+http://localhost:3000
+```
 
-The repository includes ready-made observability assets:
+---
 
-- `monitoring/prometheus/prometheus.yml`
-- `monitoring/prometheus/rules.yml`
-- `monitoring/grafana/dashboards/houseprice-dashboard.json`
-- `monitoring/alertmanager/config.yml`
+# 🐳 Docker Deployment
 
-## Notes
+Start the complete stack:
 
-- The project is currently focused on the Phase 1 ML and application scaffold.
- - `docker-compose.yml` includes an optional MLflow tracking server (exposed on port 5000) that stores the backend metadata in a lightweight SQLite file and artifacts under a Docker volume. When running the full stack via Compose the backend is configured to talk to MLflow at `http://mlflow:5000`. If you prefer not to run MLflow in Compose, the backend will fall back to using local `ml-pipeline/tracking/` artifacts.
-- For Windows PowerShell, the helper scripts in `scripts/` are the easiest way to get started.
+```powershell
+scripts/start_stack.ps1
+```
+
+or
+
+```powershell
+docker compose up --build
+```
+
+---
+
+### Available Services
+
+| Service      | Port |
+| ------------ | ---: |
+| Backend      | 8000 |
+| Frontend     | 3000 |
+| PostgreSQL   | 5432 |
+| Redis        | 6379 |
+| Prometheus   | 9090 |
+| Grafana      | 3001 |
+| Alertmanager | 9093 |
+| MLflow       | 5000 |
+
+---
+
+# 📚 Documentation
+
+* 📖 API Reference → `API_REFERENCE.md`
+
+* 🏗️ Architecture → `ARCHITECTURE.md`
+
+* ⚙️ System Design → `SYSTEM_DESIGN.md`
+
+* 📜 Changelog → `CHANGELOG.md`
+
+* 🤝 Contributing → `CONTRIBUTING.md`
+
+---
+
+# 🧪 Testing
+
+Run backend tests:
+
+```powershell
+pytest backend -q
+```
+
+Run coverage:
+
+```powershell
+pytest --cov
+```
+
+---
+
+# 🔮 Future Improvements
+
+* Redis Caching
+
+* Kubernetes Deployment
+
+* AWS Deployment
+
+* CI/CD Pipeline
+
+* Model Versioning
+
+* Feature Store
+
+* A/B Testing
+
+* Async Prediction Queue
+
+* Explainable AI (SHAP)
+
+---
+
+# 👨‍💻 Author
+
+**Om Chaudhari**
+
+Data Science Undergraduate
+
+Interested in:
+
+* Machine Learning
+
+* Generative AI
+
+* MLOps
+
+* Full Stack AI Applications
+
+---
+
+⭐ If you found this project useful, consider giving it a star.
