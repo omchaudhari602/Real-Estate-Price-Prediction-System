@@ -13,6 +13,6 @@ def anyio_backend():
 @pytest.fixture
 async def async_client():
     # Import app inside fixture to allow environment tweaks prior to import if needed
-    from backend.main import app
+    from main import app
     async with AsyncClient(app=app, base_url='http://test') as ac:
         yield ac

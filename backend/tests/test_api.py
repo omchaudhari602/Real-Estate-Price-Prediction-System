@@ -14,7 +14,7 @@ async def test_predict_endpoint_monkeypatched(async_client, monkeypatch):
     async def fake_predict(features):
         return 42.0
 
-    from backend import services
+    import services
     monkeypatch.setattr(services.predict_service, 'predict', lambda features: 42.0)
 
     r = await async_client.post('/api/v1/predict', json={'features': {'x': 1}})

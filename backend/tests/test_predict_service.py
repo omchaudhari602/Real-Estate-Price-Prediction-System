@@ -1,5 +1,5 @@
 import pytest
-from backend.services import predict_service
+from services import predict_service
 
 
 class DummyModel:

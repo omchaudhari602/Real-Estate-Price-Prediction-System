@@ -1,6 +1,6 @@
 import pytest
-from backend.services import auth_service
-from backend.core.config import settings
+from services import auth_service
+from core.config import settings
 
 
 def test_password_hash_and_verify():

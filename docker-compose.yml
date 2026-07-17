@@ -22,6 +22,8 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
+    volumes:
+      - ./ml-pipeline/tracking:/app/ml-pipeline/tracking:ro
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/houseprices
       - SECRET_KEY=change-me

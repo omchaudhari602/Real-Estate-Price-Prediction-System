@@ -10,6 +10,22 @@ from prometheus_client import Histogram
 TRACKING_DIR = Path(__file__).resolve().parents[2] / "ml-pipeline" / "tracking"
 
 
+def _resolve_tracking_dir() -> Path:
+    """Resolve the ML tracking directory across local and container layouts."""
+    candidates = [
+        Path(__file__).resolve().parents[2] / "ml-pipeline" / "tracking",
+        Path(__file__).resolve().parents[1] / "ml-pipeline" / "tracking",
+        Path.cwd() / "ml-pipeline" / "tracking",
+    ]
+    for candidate in candidates:
+        if candidate.exists():
+            return candidate
+    return candidates[0]
+
+
+TRACKING_DIR = _resolve_tracking_dir()
+
+
 def list_models():
     if not TRACKING_DIR.exists():
         return []
