@@ -32,22 +32,43 @@ def list_models():
     return [p.name for p in TRACKING_DIR.glob("*.joblib")]
 
 
+_cached_best_model_name = None
+_cached_best_model = None
+
+
 def load_best_model():
+    global _cached_best_model_name, _cached_best_model
     results_path = TRACKING_DIR / "results.json"
     if not results_path.exists():
         # fallback pick first model
         models = list_models()
         if not models:
             raise FileNotFoundError("No trained models found in tracking directory")
-        return joblib.load(TRACKING_DIR / models[0])
-    data = json.loads(results_path.read_text())
-    best = data.get("best")
-    if best is None:
-        return load_best_model()
-    model_file = TRACKING_DIR / f"{best}.joblib"
-    if not model_file.exists():
-        raise FileNotFoundError(f"Model file {model_file} not found")
-    return joblib.load(model_file)
+        best = models[0]
+    else:
+        data = json.loads(results_path.read_text())
+        best = data.get("best")
+        if best is None:
+            models = list_models()
+            if not models:
+                raise FileNotFoundError("No trained models found in tracking directory")
+            best = models[0]
+        else:
+            if not best.endswith(".joblib"):
+                best = f"{best}.joblib"
+                
+    if _cached_best_model_name != best or _cached_best_model is None:
+        model_file = TRACKING_DIR / best
+        if not model_file.exists():
+            # Try without extension if best is not ending with .joblib
+            if not best.endswith(".joblib") and (TRACKING_DIR / f"{best}.joblib").exists():
+                model_file = TRACKING_DIR / f"{best}.joblib"
+            else:
+                raise FileNotFoundError(f"Model file {model_file} not found")
+        _cached_best_model = joblib.load(model_file)
+        _cached_best_model_name = best
+        
+    return _cached_best_model
 
 def predict(features: Any, model=None):
     if model is None:

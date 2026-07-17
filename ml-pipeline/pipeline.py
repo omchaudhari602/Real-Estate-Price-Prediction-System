@@ -76,6 +76,9 @@ def train_and_select(df: pd.DataFrame, target_col: str = "SalePrice"):
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
     candidates = {
+        "LinearRegression": Pipeline(steps=[("pre", preprocessor), ("model", LinearRegression())]),
+        "RandomForest": Pipeline(steps=[("pre", preprocessor), ("model", RandomForestRegressor(n_estimators=100, random_state=42))]),
+        "XGBoost": Pipeline(steps=[("pre", preprocessor), ("model", XGBRegressor(n_estimators=100, random_state=42))]),
         "GradientBoosting": Pipeline(steps=[("pre", preprocessor), ("model", GradientBoostingRegressor(n_estimators=100, random_state=42))])
     }
 
