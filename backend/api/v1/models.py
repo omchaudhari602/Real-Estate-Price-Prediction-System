@@ -18,7 +18,8 @@ async def get_models():
 
 @router.get("/history")
 async def get_history():
-    results = Path(__file__).resolve().parents[3] / "ml-pipeline" / "tracking" / "results.json"
+    # /app/api/v1/models.py -> parents[2] == /app (project root inside container)
+    results = Path(__file__).resolve().parents[2] / "ml-pipeline" / "tracking" / "results.json"
     if not results.exists():
         raise HTTPException(status_code=404, detail="No training history found")
     return json.loads(results.read_text())
@@ -26,7 +27,8 @@ async def get_history():
 
 @router.post("/models/active")
 async def set_active_model(req: ActiveModelRequest):
-    results_path = Path(__file__).resolve().parents[3] / "ml-pipeline" / "tracking" / "results.json"
+    # /app/api/v1/models.py -> parents[2] == /app (project root inside container)
+    results_path = Path(__file__).resolve().parents[2] / "ml-pipeline" / "tracking" / "results.json"
     if not results_path.exists():
         raise HTTPException(status_code=404, detail="No training history found to update")
     

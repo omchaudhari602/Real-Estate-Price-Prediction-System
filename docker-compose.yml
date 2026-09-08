@@ -23,7 +23,7 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     volumes:
-      - ./ml-pipeline/tracking:/app/ml-pipeline/tracking:ro
+      - ./ml-pipeline/tracking:/app/ml-pipeline/tracking
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/houseprices
       - SECRET_KEY=change-me
@@ -45,17 +45,6 @@ services:
     depends_on:
       - backend
 
-  prometheus:
-    image: prom/prometheus:latest
-    volumes:
-      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
-    command:
-      - --config.file=/etc/prometheus/prometheus.yml
-    ports:
-      - "9090:9090"
-    depends_on:
-      - backend
-
   mlflow:
     # Use the official MLflow image if available; fall back to a lightweight Python image
     image: python:3.11-slim
@@ -71,28 +60,7 @@ services:
     depends_on:
       - postgres
 
-  grafana:
-    image: grafana/grafana:9.5.0
-    ports:
-      - "3001:3000"
-    volumes:
-      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
-      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
-    environment:
-      - GF_SECURITY_ADMIN_PASSWORD=admin
-    depends_on:
-      - prometheus
 
-  alertmanager:
-    image: prom/alertmanager:latest
-    ports:
-      - "9093:9093"
-    volumes:
-      - ./monitoring/alertmanager/config.yml:/etc/alertmanager/config.yml:ro
-    command:
-      - --config.file=/etc/alertmanager/config.yml
-    depends_on:
-      - prometheus
 
 volumes:
   pgdata:

@@ -8,7 +8,6 @@ Build a scalable real estate price prediction system that:
 - Supports secure user authentication
 - Allows model retraining
 - Tracks model experiments
-- Provides monitoring and observability
 
 ---
 
@@ -117,26 +116,6 @@ Authenticated Requests
 
 ---
 
-# Monitoring Flow
-
-```text
-API Request
-
-↓
-
-Prometheus Metrics
-
-↓
-
-Grafana Dashboard
-
-↓
-
-Visual Monitoring
-```
-
----
-
 # Scalability Improvements
 
 Future enhancements:
@@ -175,10 +154,10 @@ Future enhancements:
 - SQLite
 - PostgreSQL
 
-### Monitoring
+### Observability
 
-- Prometheus
-- Grafana
+- Application Logging
+- Health Checks
 
 ### Deployment
 

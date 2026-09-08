@@ -4,11 +4,9 @@ from contextlib import asynccontextmanager
 from api.v1 import auth as auth_router
 from api.v1 import predict as predict_router
 from api.v1 import health as health_router
-from api.v1 import metrics as metrics_router
 from api.v1 import models as models_router
 from middleware.rate_limit import SimpleRateLimiter
 from middleware.logging import setup_structured_logging
-from middleware.metrics import MetricsMiddleware
 from core.config import settings
 from database import engine, Base, get_db
 # Import database models to register them with Base
@@ -51,13 +49,11 @@ app.add_middleware(
 
 # register middleware
 app.add_middleware(SimpleRateLimiter, calls=120, period=60)
-app.add_middleware(MetricsMiddleware)
 
 # include routers
 app.include_router(auth_router.router)
 app.include_router(predict_router.router)
 app.include_router(health_router.router)
-app.include_router(metrics_router.router)
 app.include_router(models_router.router)
 
 

@@ -15,7 +15,6 @@ from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 import joblib
-import mlflow
 
 def find_dataset():
     preferred = Path(__file__).resolve().parents[0] / "data" / "house_prices.csv"

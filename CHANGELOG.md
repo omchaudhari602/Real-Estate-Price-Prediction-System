@@ -14,7 +14,6 @@ All notable changes to **Real Estate Price Prediction System** are documented he
 * ⚡ FastAPI REST Backend
 * 🎨 React + Vite Frontend
 * 🗄️ SQLite / PostgreSQL Database Support
-* 📈 Prometheus Metrics Monitoring
 * ❤️ Health Check Endpoint
 * 🐳 Dockerized Deployment
 * 🧪 MLflow Experiment Tracking

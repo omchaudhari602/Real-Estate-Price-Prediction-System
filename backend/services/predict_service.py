@@ -4,7 +4,6 @@ from pathlib import Path
 import pandas as pd
 from typing import Any, Dict
 import time
-from prometheus_client import Histogram
 
 
 TRACKING_DIR = Path(__file__).resolve().parents[2] / "ml-pipeline" / "tracking"
@@ -80,8 +79,3 @@ def predict(features: Any, model=None):
     # Just predict - no hacks needed anymore!
     preds = model.predict(df)
     return float(preds[0])
-try:
-    PREDICTION_LATENCY = Histogram('prediction_latency_seconds', 'Prediction latency', buckets=(0.001,0.01,0.05,0.1,0.5,1,2,5))
-except ValueError:
-    # metric already registered (e.g., tests re-importing modules); use a no-op fallback
-    PREDICTION_LATENCY = None

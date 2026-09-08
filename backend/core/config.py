@@ -1,7 +1,5 @@
 from pathlib import Path
 
-from pydantic import AnyHttpUrl
-
 try:
     from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -12,7 +10,6 @@ try:
         ALGORITHM: str = "HS256"
         ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24
         DATABASE_URL: str
-        MLFLOW_TRACKING_URI: AnyHttpUrl | None = None
         BASE_DIR: Path = Path(__file__).resolve().parents[2]
 
         model_config = SettingsConfigDict(
@@ -29,7 +26,6 @@ except ImportError:
         ALGORITHM: str = "HS256"
         ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24
         DATABASE_URL: str
-        MLFLOW_TRACKING_URI: AnyHttpUrl | None = None
         BASE_DIR: Path = Path(__file__).resolve().parents[2]
 
         class Config:

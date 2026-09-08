@@ -58,9 +58,6 @@ Services exposed by Docker Compose (default ports)
 - Frontend: 3000
 - PostgreSQL: 5432
 - Redis: 6379
-- Prometheus: 9090
-- Grafana: 3001
-- Alertmanager: 9093
 - MLflow UI: 5000
 
 7) Run backend tests

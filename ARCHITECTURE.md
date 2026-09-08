@@ -1,21 +1,16 @@
-# 🏗️ Architecture
+# 🏗️ Architecture Overview
 
-## Overview
+The Real Estate Price Prediction System is built as a modular, production-ready full-stack MLOps platform.
 
-The Real Estate Price Prediction System is a full-stack machine learning application designed with a modular architecture.
+For the full detailed technical specification, architecture diagrams, sequence charts, database schemas, and MLOps pipeline flows, see the primary architecture document in `docs/`:
 
-It consists of:
-
-- React + Vite Frontend
-- FastAPI Backend
-- Machine Learning Prediction Engine
-- SQLite/PostgreSQL Database
-- Monitoring Stack (Prometheus + Grafana)
-- MLflow for Experiment Tracking
+👉 **[Complete Architecture Specification Document](docs/ARCHITECTURE.md)**
 
 ---
 
-## High Level Architecture
+## High-Level System Architecture
+
+![System Architecture](docs/architecture.png)
 
 ```text
                 ┌─────────────────────┐
@@ -34,86 +29,23 @@ It consists of:
         ┌──────────────────┼─────────────────┐
         ▼                  ▼                 ▼
 
-┌─────────────┐    ┌─────────────┐    ┌─────────────┐
-│ ML Model    │    │ Database    │    │ Monitoring  │
-│ Joblib      │    │ SQLite/PG   │    │ Prometheus  │
-│ ScikitLearn │    │ SQLAlchemy  │    │ Grafana     │
-└─────────────┘    └─────────────┘    └─────────────┘
-
-                           │
-                           ▼
-
-                ┌─────────────────────┐
-                │       MLflow         │
-                │ Experiment Tracking  │
-                └─────────────────────┘
+┌─────────────┐    ┌─────────────┐    ┌──────────────┐
+│ ML Model    │    │ Database    │    │ MLflow       │
+│ Joblib      │    │ SQLite/PG   │    │ Experiment   │
+│ ScikitLearn │    │ SQLAlchemy  │    │ Tracking     │
+└─────────────┘    └─────────────┘    └──────────────┘
 ```
 
 ---
 
-## Frontend
+## Core Components Summary
 
-Technology:
-
-- React
-- Vite
-- Axios
-- React Router
-
-Responsibilities:
-
-- User Authentication
-- Prediction Form
-- Display Results
-- Dashboard
-- Error Handling
+* **Frontend (`frontend/`)**: React 18 + Vite SPA for real-time predictions, user authentication, and performance dashboards.
+* **Backend (`backend/`)**: FastAPI server implementing JWT auth, model inference service, CORS & rate-limiting middleware, and retrain triggers.
+* **ML Engine (`ml-pipeline/`)**: Scikit-Learn / XGBoost pipeline for preprocessing, feature engineering, model training, evaluation, and Joblib artifact serialization.
+* **MLOps & Observability**: Integrated MLflow experiment tracking server, Prometheus metrics, and Grafana dashboards.
+* **Infrastructure (`infrastructure/`)**: Multi-container Docker Compose, Kubernetes manifests (Deployments, Services, HPA, Ingress), and Terraform infrastructure automation.
 
 ---
 
-## Backend
-
-Technology:
-
-- FastAPI
-- SQLAlchemy
-- JWT Authentication
-- Pydantic
-
-Responsibilities:
-
-- Authentication
-- User Management
-- Prediction API
-- Model Retraining
-- Metrics Endpoint
-
----
-
-## Machine Learning Layer
-
-Technology:
-
-- Scikit-Learn
-- Joblib
-
-Responsibilities:
-
-- Model Loading
-- Feature Processing
-- Prediction
-- Retraining
-
----
-
-## Monitoring
-
-Technology:
-
-- Prometheus
-- Grafana
-
-Responsibilities:
-
-- API Metrics
-- Request Monitoring
-- Performance Analysis
+📖 *For complete component deep-dives, sequence diagrams, and security architecture, please read [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).*

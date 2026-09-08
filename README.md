@@ -38,8 +38,6 @@ A **production-ready full-stack Machine Learning application** that predicts rea
 
 ✅ Docker & Docker Compose
 
-✅ Prometheus + Grafana Monitoring
-
 ✅ MLflow Experiment Tracking
 
 ✅ Kubernetes & Terraform Deployment
@@ -70,7 +68,6 @@ Real-Estate-Price-Prediction-System
 ├── frontend/         # React + Vite frontend
 ├── ml-pipeline/      # ML training pipeline
 ├── infrastructure/   # Kubernetes + Terraform
-├── monitoring/       # Prometheus + Grafana
 ├── scripts/          # PowerShell helpers
 ├── docs/             # Architecture & screenshots
 
@@ -113,12 +110,6 @@ Real-Estate-Price-Prediction-System
 * PostgreSQL
 * SQLite
 
-### Monitoring
-
-* Prometheus
-* Grafana
-* Alertmanager
-
 ### DevOps
 
 * Docker
@@ -156,21 +147,17 @@ Real-Estate-Price-Prediction-System
 
 * Model comparison
 
----
+## 📈 Monitoring & Observability
 
-## 📈 Monitoring
+Integrated observability and tracking stack implemented in the codebase:
 
-Integrated observability stack:
+* 🩺 **API & Database Health Probes** (`/api/v1/health` & `/debug/db-test`) for container readiness/liveness checks
+* 📋 **Structured JSON Logging** (`python-json-logger`) formatted with timestamp, level, and context for log aggregation
+* 🧠 **MLflow Experiment & Model Tracking** (`http://localhost:5000`) for logging RMSE, MAE, R² metrics, and model artifacts
+* ⚡ **Locust Load & Stress Testing** (`locustfile.py`) for simulating concurrent user traffic and performance latency
+* 🛡️ **Rate Limiting Middleware** (`SimpleRateLimiter`) for traffic throttling (120 requests / 60 seconds)
+* ☸️ **Kubernetes Auto-Scaling & Health Probes** (`hpa.yaml`) monitoring CPU/Memory usage and pod readiness
 
-* Prometheus Metrics
-
-* Grafana Dashboards
-
-* Alertmanager
-
-* Health Checks
-
----
 
 ## 🧠 Machine Learning Pipeline
 
@@ -316,9 +303,6 @@ docker compose up --build
 | Frontend     | 3000 |
 | PostgreSQL   | 5432 |
 | Redis        | 6379 |
-| Prometheus   | 9090 |
-| Grafana      | 3001 |
-| Alertmanager | 9093 |
 | MLflow       | 5000 |
 
 ---
@@ -327,13 +311,14 @@ docker compose up --build
 
 * 📖 API Reference → `API_REFERENCE.md`
 
-* 🏗️ Architecture → `ARCHITECTURE.md`
+* 🏗️ Architecture → [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
 
 * ⚙️ System Design → `SYSTEM_DESIGN.md`
 
 * 📜 Changelog → `CHANGELOG.md`
 
 * 🤝 Contributing → `CONTRIBUTING.md`
+
 
 ---
 

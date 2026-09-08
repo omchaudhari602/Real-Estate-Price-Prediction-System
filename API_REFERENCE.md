@@ -118,18 +118,6 @@ GET /api/v1/health
 
 ---
 
-# Metrics
-
-### Endpoint
-
-```http
-GET /api/v1/metrics
-```
-
-Returns Prometheus metrics.
-
----
-
 # Retrain Model
 
 ### Endpoint
