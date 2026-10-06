@@ -1,7 +1,7 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useAuth } from '../context/AuthContext'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 export default function Login() {
@@ -114,6 +114,13 @@ export default function Login() {
             <p className="mt-1">Email: <span className="font-mono">admin@example.com</span></p>
             <p>Password: <span className="font-mono">password</span></p>
           </div>
+
+          <p className="mt-6 text-center text-sm text-gray-600">
+            New user?{' '}
+            <Link to="/register" className="font-semibold text-blue-600 hover:text-blue-700 hover:underline">
+              Create an account
+            </Link>
+          </p>
         </div>
       </div>
     </div>
