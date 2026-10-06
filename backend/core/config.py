@@ -10,6 +10,7 @@ try:
         ALGORITHM: str = "HS256"
         ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24
         DATABASE_URL: str
+        MLFLOW_TRACKING_URI: str | None = None
         BASE_DIR: Path = Path(__file__).resolve().parents[2]
 
         model_config = SettingsConfigDict(
@@ -26,6 +27,7 @@ except ImportError:
         ALGORITHM: str = "HS256"
         ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24
         DATABASE_URL: str
+        MLFLOW_TRACKING_URI: str | None = None
         BASE_DIR: Path = Path(__file__).resolve().parents[2]
 
         class Config:
